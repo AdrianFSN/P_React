@@ -1,0 +1,19 @@
+.advertsList {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+.advertsList ul {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.advertsList li {
+  list-style: none;
+}
+
+.advertsList h2 {
+  margin-bottom: 0.2rem;
+}
