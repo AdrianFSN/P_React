@@ -4,8 +4,8 @@ import AdvertsPage from "./pages/adverts/AdvertsPage";
 import { useState } from "react";
 import { LoginPage } from "./components/shared/LoginPage";
 
-function App() {
-  const [isLogged, setIsLogged] = useState(false);
+function App({ isDefaultLogged }) {
+  const [isLogged, setIsLogged] = useState(isDefaultLogged);
 
   const handleLogin = () => setIsLogged(true);
   return (
