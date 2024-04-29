@@ -3,9 +3,18 @@ import { login } from "../../pages/auth/service";
 import Button from "./Button";
 
 export function LoginPage({ onLogin }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formValues, setFormValues] = useState({
+    email: "",
+    password: "",
+  });
 
+  const handleChange = (event) => {
+    setFormValues((currentFormValues) => ({
+      ...currentFormValues,
+      [event.target.name]: event.target.value,
+    }));
+  };
+  const { email, password } = formValues;
   const buttonDisabled = !email || !password;
 
   const handleSubmit = async (event) => {
@@ -25,18 +34,14 @@ export function LoginPage({ onLogin }) {
           type="text"
           name="email"
           value={email}
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}
+          onChange={handleChange}
           placeholder="Your email here"
         ></input>
         <input
           type="password"
           name="password"
           value={password}
-          onChange={(event) => {
-            setPassword(event.target.value);
-          }}
+          onChange={handleChange}
           placeholder="Your password here"
         ></input>
         <Button type="submit" $variant="primary" disabled={buttonDisabled}>
