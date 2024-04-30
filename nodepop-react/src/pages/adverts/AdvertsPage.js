@@ -2,13 +2,20 @@ import styles from "./AdvertsPage.module.css";
 import { useEffect, useState } from "react";
 import { getLatestAds } from "./service";
 import { AdvertPage } from "./AdvertPage";
+import Button from "../../components/shared/Button";
+import { logout } from "../auth/service";
 
-function AdvertsPage() {
+function AdvertsPage({ onLogout }) {
   const [adverts, setAdvertsPanel] = useState([]);
 
   useEffect(() => {
     getLatestAds().then((adverts) => setAdvertsPanel(adverts));
   }, []);
+
+  const handleLogout = async () => {
+    await logout();
+    onLogout();
+  };
 
   return (
     <section>
@@ -25,6 +32,7 @@ function AdvertsPage() {
         ))}
       </ul>
       <AdvertPage />
+      <Button onClick={handleLogout}>Logout</Button>
     </section>
   );
 }

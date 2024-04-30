@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { login } from "./service";
 import Button from "../../components/shared/Button";
 import FormField from "../../components/shared/FormField";
@@ -70,7 +70,7 @@ export function LoginPage({ onLogin }) {
           Login
         </Button>
         <CheckBox
-          label="Clica para mantener abierta tu sesión"
+          label="Guardar contraseña"
           checked={checkBoxStatus}
           onChange={handleCheckboxChange}
         ></CheckBox>
