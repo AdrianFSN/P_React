@@ -9,10 +9,10 @@
   border-radius: 9999px;
   color: rgba(29, 161, 242, 1);
   display: inline-flex;
-  height: 48px;
+  height: 70px;
   justify-content: center;
   transition: background-color 0.2s;
-  width: 48px;
+  width: 70px;
 }
 
 .header-logo:hover {

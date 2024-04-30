@@ -19,7 +19,7 @@ function AdvertsPage({ onLogout }) {
   };
 
   return (
-    <Layout>
+    <Layout title="List of adverts">
       <section>
         <ul className={styles.advertsList}>
           {adverts.map(({ id, name, price, sale, tags }) => (
