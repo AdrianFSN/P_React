@@ -1,7 +1,6 @@
 import styles from "./AdvertsPage.module.css";
 import { useEffect, useState } from "react";
 import { getLatestAds } from "./service";
-import handleTags from "./utils/handleTags";
 import { AdvertPage } from "./AdvertPage";
 
 function AdvertsPage() {
@@ -21,7 +20,7 @@ function AdvertsPage() {
             </li>
             <li>Price: {price} €</li>
             <li>Type of offer: {sale ? "On sale" : "On search"}</li>
-            <li>Category: {handleTags(tags)}</li>
+            <li>Category: {tags.join(" | ")}</li>
           </ul>
         ))}
       </ul>

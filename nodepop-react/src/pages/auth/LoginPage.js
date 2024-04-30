@@ -3,6 +3,8 @@ import { login } from "./service";
 import Button from "../../components/shared/Button";
 import FormField from "../../components/shared/FormField";
 import CheckBox from "../../components/shared/CheckBox";
+import "./LoginPage.css";
+import storage from "../utils/storage";
 
 export function LoginPage({ onLogin }) {
   const [formValues, setFormValues] = useState({
@@ -10,15 +12,9 @@ export function LoginPage({ onLogin }) {
     password: "",
   });
 
+  const accessToken = storage.get("auth");
+  console.log("Esto es accessToken ", accessToken);
   const [checkBoxStatus, setCheckBoxStatus] = useState(false);
-
-  useEffect(() => {
-    if (!checkBoxStatus) {
-      console.log("Debería llamar para que se cierre la sesión");
-    } else {
-      console.log("Debería llamar para que se GUARDE la sesión");
-    }
-  }, [checkBoxStatus]);
 
   const handleCheckboxChange = () => {
     setCheckBoxStatus((prevStatus) => !prevStatus);
@@ -36,17 +32,21 @@ export function LoginPage({ onLogin }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await login({
-      email,
-      password,
-    });
+    const response = await login(
+      {
+        email,
+        password,
+      },
+      checkBoxStatus
+    );
     onLogin();
   };
   return (
-    <div>
-      <h1>Log in to Nodepop</h1>
+    <div className="loginPage">
+      <h1 className="loginPage-title">Log in to Nodepop</h1>
       <form onSubmit={handleSubmit}>
         <FormField
+          className="loginForm-field"
           type="text"
           name="email"
           value={email}
@@ -54,13 +54,19 @@ export function LoginPage({ onLogin }) {
           placeholder="Your email here"
         ></FormField>
         <FormField
+          className="loginForm-field"
           type="password"
           name="password"
           value={password}
           onChange={handleChange}
           placeholder="Your password here"
         ></FormField>
-        <Button type="submit" $variant="primary" disabled={buttonDisabled}>
+        <Button
+          className="loginForm-submit"
+          type="submit"
+          $variant="primary"
+          disabled={buttonDisabled}
+        >
           Login
         </Button>
         <CheckBox
