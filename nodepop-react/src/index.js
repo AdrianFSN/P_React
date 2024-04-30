@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import storage from "./pages/utils/storage";
 import { setAuthorizationHeader } from "./api/client";
 import { AuthContextProvider } from "./pages/auth/context";
+import { BrowserRouter } from "react-router-dom";
 
 const accessToken = storage.get("auth");
 if (accessToken) {
@@ -15,9 +16,11 @@ if (accessToken) {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <AuthContextProvider isDefaultLogged={!!accessToken}>
-      <App />
-    </AuthContextProvider>
+    <BrowserRouter>
+      <AuthContextProvider isDefaultLogged={!!accessToken}>
+        <App />
+      </AuthContextProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

@@ -5,8 +5,11 @@ import FormField from "../../components/shared/FormField";
 import CheckBox from "../../components/shared/CheckBox";
 import "./LoginPage.css";
 import { useAuth } from "./context";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
+  const location = useLocation();
+  const navigate = useNavigate();
   const { onLogin } = useAuth();
   const [formValues, setFormValues] = useState({
     email: "",
@@ -33,6 +36,9 @@ export default function LoginPage() {
 
     await login(formValues, checkBoxStatus);
     onLogin();
+
+    const to = location.state?.from || "/";
+    navigate(to, { replace: true });
   };
   return (
     <div className="loginPage">
