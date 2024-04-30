@@ -15,8 +15,6 @@ export const login = (credentials, storageRequest) => {
 };
 
 export const logout = () => {
-  return Promise.resolve().then(() => {
-    removeAuthorizationHeader(); // LLAMA AL MÉTODO PARA QUITAR LA CABECERA DE AUTENTICACIÓN
-    storage.remove("auth"); // BORRA LO QUE HABÍAMOS GUARDADO COMO AUTH
-  });
+  removeAuthorizationHeader(); // LLAMA AL MÉTODO PARA QUITAR LA CABECERA DE AUTENTICACIÓN
+  storage.remove("auth"); // BORRA LO QUE HABÍAMOS GUARDADO COMO AUTH
 };

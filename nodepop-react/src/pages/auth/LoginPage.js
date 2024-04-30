@@ -70,7 +70,7 @@ export function LoginPage({ onLogin }) {
           Login
         </Button>
         <CheckBox
-          label="Guardar contraseña"
+          label="Clica para mantener tu sesión activa"
           checked={checkBoxStatus}
           onChange={handleCheckboxChange}
         ></CheckBox>

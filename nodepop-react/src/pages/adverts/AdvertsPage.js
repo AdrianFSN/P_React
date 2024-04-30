@@ -12,8 +12,8 @@ function AdvertsPage({ onLogout }) {
     getLatestAds().then((adverts) => setAdvertsPanel(adverts));
   }, []);
 
-  const handleLogout = async () => {
-    await logout();
+  const handleLogout = () => {
+    logout();
     onLogout();
   };
 
