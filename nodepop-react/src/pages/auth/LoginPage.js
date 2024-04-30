@@ -31,7 +31,7 @@ export default function LoginPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await login(formValues, checkBoxStatus);
+    await login(formValues, checkBoxStatus);
     onLogin();
   };
   return (

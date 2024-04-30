@@ -5,8 +5,10 @@ import { AdvertPage } from "./AdvertPage";
 import Button from "../../components/shared/Button";
 import { logout } from "../auth/service";
 import Layout from "../../components/layout/Layout";
+import { useAuth } from "../auth/context";
 
-function AdvertsPage({ onLogout }) {
+function AdvertsPage() {
+  const { onLogout } = useAuth();
   const [adverts, setAdvertsPanel] = useState([]);
 
   useEffect(() => {
