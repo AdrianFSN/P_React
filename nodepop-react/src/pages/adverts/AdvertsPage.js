@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import { getLatestAds } from "./service";
 import { AdvertPage } from "./AdvertPage";
 import Button from "../../components/shared/Button";
-import { logout } from "../auth/service";
+//import { logout } from "../auth/service";
 import Layout from "../../components/layout/Layout";
-import { useAuth } from "../auth/context";
+//import { useAuth } from "../auth/context";
 
 const EmptyList = () => {
   return (
@@ -17,17 +17,17 @@ const EmptyList = () => {
 };
 
 function AdvertsPage() {
-  const { onLogout } = useAuth();
+  //const { onLogout } = useAuth();
   const [adverts, setAdvertsPanel] = useState([]);
 
   useEffect(() => {
     getLatestAds().then((adverts) => setAdvertsPanel(adverts));
   }, []);
 
-  const handleLogout = () => {
+  /*   const handleLogout = () => {
     logout();
     onLogout();
-  };
+  }; */
 
   return (
     <Layout title="List of adverts">
@@ -49,7 +49,6 @@ function AdvertsPage() {
           <EmptyList />
         )}
         <AdvertPage />
-        <Button onClick={handleLogout}>Logout</Button>
       </section>
     </Layout>
   );
