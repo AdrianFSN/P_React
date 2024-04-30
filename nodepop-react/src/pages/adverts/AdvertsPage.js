@@ -2,6 +2,7 @@ import styles from "./AdvertsPage.module.css";
 import { useEffect, useState } from "react";
 import { getLatestAds } from "./service";
 import handleTags from "./utils/handleTags";
+import { AdvertPage } from "./AdvertPage";
 
 function AdvertsPage() {
   const [adverts, setAdvertsPanel] = useState([]);
@@ -24,6 +25,7 @@ function AdvertsPage() {
           </ul>
         ))}
       </ul>
+      <AdvertPage />
     </section>
   );
 }

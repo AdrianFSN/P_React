@@ -2,7 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import AdvertsPage from "./pages/adverts/AdvertsPage";
 import { useState } from "react";
-import { LoginPage } from "./components/shared/LoginPage";
+import { LoginPage } from "./pages/auth/LoginPage";
 
 function App({ isDefaultLogged }) {
   const [isLogged, setIsLogged] = useState(isDefaultLogged);
