@@ -1,22 +1,11 @@
 import "./App.css";
 import AdvertsPage from "./pages/adverts/AdvertsPage";
-import { useState } from "react";
-import { LoginPage } from "./pages/auth/LoginPage";
+import LoginPage from "./pages/auth/LoginPage";
+import { useAuth } from "./pages/auth/context";
 
-function App({ isDefaultLogged }) {
-  const [isLogged, setIsLogged] = useState(isDefaultLogged);
-
-  const handleLogin = () => setIsLogged(true);
-  const handleLogout = () => setIsLogged(false);
-  return (
-    <section>
-      {isLogged ? (
-        <AdvertsPage onLogout={handleLogout} />
-      ) : (
-        <LoginPage onLogin={handleLogin} />
-      )}
-    </section>
-  );
+function App() {
+  const { isLogged } = useAuth();
+  return <section>{isLogged ? <AdvertsPage /> : <LoginPage />}</section>;
 }
 
 export default App;

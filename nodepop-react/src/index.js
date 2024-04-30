@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import storage from "./pages/utils/storage";
 import { setAuthorizationHeader } from "./api/client";
+import { AuthContextProvider } from "./pages/auth/context";
 
 const accessToken = storage.get("auth");
 if (accessToken) {
@@ -14,7 +15,9 @@ if (accessToken) {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App isDefaultLogged={!!accessToken} />
+    <AuthContextProvider isDefaultLogged={!!accessToken}>
+      <App />
+    </AuthContextProvider>
   </React.StrictMode>
 );
 

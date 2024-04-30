@@ -4,16 +4,15 @@ import Button from "../../components/shared/Button";
 import FormField from "../../components/shared/FormField";
 import CheckBox from "../../components/shared/CheckBox";
 import "./LoginPage.css";
-import storage from "../utils/storage";
+import { useAuth } from "./context";
 
-export function LoginPage({ onLogin }) {
+export default function LoginPage() {
+  const { onLogin } = useAuth();
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
   });
 
-  const accessToken = storage.get("auth");
-  console.log("Esto es accessToken ", accessToken);
   const [checkBoxStatus, setCheckBoxStatus] = useState(false);
 
   const handleCheckboxChange = () => {
@@ -32,13 +31,7 @@ export function LoginPage({ onLogin }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await login(
-      {
-        email,
-        password,
-      },
-      checkBoxStatus
-    );
+    const response = await login(formValues, checkBoxStatus);
     onLogin();
   };
   return (
