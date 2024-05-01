@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import "./SelectMenu.css";
 
 const SelectMenu = ({ className, label, optionsArray, ...props }) => {
   return (

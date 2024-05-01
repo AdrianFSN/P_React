@@ -13,10 +13,14 @@ export default function Header({ className }) {
           <Icon width={32} height={32} fill="rgb(29, 161, 242)" />
         </div>
       </Link>
-      <NavLink to="/v1/adverts" end>
-        See adverts
-      </NavLink>
+
       <nav className="header-nav">
+        <NavLink to="/v1/adverts" end>
+          See adverts
+        </NavLink>
+        <NavLink to="/v1/adverts/new" end>
+          Create new advert
+        </NavLink>
         <AuthButton className="header-button" />
       </nav>
     </header>

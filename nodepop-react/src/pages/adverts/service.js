@@ -19,7 +19,6 @@ export function createNewAd(advert) {
     price: parseInt(advert.price),
     tags: [advert.tags],
   };
-  console.log("Esto es el advert que le llega a service", advert);
-  console.log("Esto es newAdvert transformado en service", newAdvert);
+
   return client.post(advertsUrl, newAdvert);
 }

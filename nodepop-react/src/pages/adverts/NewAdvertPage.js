@@ -56,10 +56,14 @@ function NewAdvertForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    console.log("Esto es ahora formValues", formValues);
-    await createNewAd(formValues);
-    navigate("/v1/adverts");
+    try {
+      const createdAd = await createNewAd(formValues);
+      navigate(`/v1/adverts/${createdAd.id}`);
+    } catch (error) {
+      if (error.status === 401) {
+        navigate("/login");
+      }
+    }
   };
 
   return (
