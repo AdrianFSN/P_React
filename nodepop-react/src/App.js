@@ -21,8 +21,8 @@ function App() {
           </div>
         }
       >
-        <Route index element={<NewAdvertPage />} />
-        {/* <Route index element={<AdvertsPage />} /> */}
+        <Route index element={<AdvertsPage />} />
+        <Route path="new" element={<NewAdvertPage />} />
         <Route path=":advertId" element={<AdvertPage />} />
       </Route>
     </Routes>
