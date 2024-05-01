@@ -6,6 +6,7 @@ import FormField from "../../components/shared/FormField";
 import CheckBox from "../../components/shared/CheckBox";
 import Button from "../../components/shared/Button";
 import SelectMenu from "../../components/shared/SelectMenu";
+import FileUploadInput from "../../components/shared/FileInput";
 
 function NewAdvertForm() {
   const navigate = useNavigate();
@@ -41,6 +42,12 @@ function NewAdvertForm() {
     setSelectedTags(selectedOptions);
   };
 
+  const [uploadedFile, setUploadedFile] = useState(null);
+
+  const handleFileUpload = (file) => {
+    setUploadedFile(file);
+  };
+
   const { name, sale, price, tags } = formValues;
   const buttonDisabled =
     !name || !sale || price <= 0 || isNaN(price) || tags.length === 0;
@@ -49,10 +56,9 @@ function NewAdvertForm() {
     setFormValues((currentFormValues) => ({
       ...currentFormValues,
       tags: selectedTags,
+      photo: uploadedFile,
     }));
-  }, [selectedTags]);
-
-  console.log("Esto es selectedTags ", selectedTags);
+  }, [selectedTags, uploadedFile]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -82,13 +88,6 @@ function NewAdvertForm() {
         onChange={handleChange}
         placeholder="Enter a price in €"
       />
-      {/*       <FormField
-        type="text"
-        name="tags"
-        value={tags}
-        onChange={handleChange}
-        placeholder="Enter category(s) separated by commas"
-      /> */}
       <SelectMenu
         type="text"
         name="tags"
@@ -103,6 +102,9 @@ function NewAdvertForm() {
         checked={checkBoxStatus}
         onChange={handleCheckboxChange}
       />
+
+      <FileUploadInput onChange={handleFileUpload} />
+
       <Button
         className="loginForm-submit"
         type="submit"

@@ -18,7 +18,13 @@ export function createNewAd(advert) {
     sale: advert.sale,
     price: parseInt(advert.price),
     tags: [advert.tags],
+    photo: advert.photo,
   };
+  console.log(advert.photo);
 
-  return client.post(advertsUrl, newAdvert);
+  return client.post(advertsUrl, newAdvert, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
 }
