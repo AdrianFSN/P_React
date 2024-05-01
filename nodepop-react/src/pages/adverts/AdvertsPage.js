@@ -36,7 +36,6 @@ function AdvertsPage() {
         ) : (
           <EmptyList />
         )}
-        <AdvertPage />
       </section>
     </Layout>
   );

@@ -1,8 +1,9 @@
 import React from "react";
+import "./Advert.css";
 
 const Advert = ({ id, name, price, sale, tags, photo }) => {
   return (
-    <section>
+    <section className="single-advert">
       <ul key={id}>
         {photo && <img src={`/${photo}`} alt="Advert offer" />}
         <li>

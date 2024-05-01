@@ -6,3 +6,8 @@ export function getLatestAds() {
   const url = `${advertsUrl}`;
   return client.get(url);
 }
+
+export function getAdvert(advertId) {
+  const url = `${advertsUrl}/${advertId}`;
+  return client.get(url);
+}
