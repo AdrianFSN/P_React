@@ -4,6 +4,7 @@ import AdvertsPage from "./pages/adverts/AdvertsPage";
 import LoginPage from "./pages/auth/LoginPage";
 import RequireAuth from "./pages/auth/components/RequireAuth";
 import { AdvertPage } from "./pages/adverts/AdvertPage";
+import NewAdvertPage from "./pages/adverts/NewAdvertPage";
 
 function App() {
   //return <section>{isLogged ? <AdvertsPage /> : <LoginPage />}</section>;
@@ -20,7 +21,8 @@ function App() {
           </div>
         }
       >
-        <Route index element={<AdvertsPage />} />
+        <Route index element={<NewAdvertPage />} />
+        {/* <Route index element={<AdvertsPage />} /> */}
         <Route path=":advertId" element={<AdvertPage />} />
       </Route>
     </Routes>
