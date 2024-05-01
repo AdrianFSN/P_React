@@ -1,7 +1,7 @@
 import styles from "./AdvertsPage.module.css";
 import { useEffect, useState } from "react";
 import { getLatestAds } from "./service";
-import { AdvertPage } from "./AdvertPage";
+import { Link } from "react-router-dom";
 import Button from "../../components/shared/Button";
 import Layout from "../../components/layout/Layout";
 import Advert from "./components/Advert";
@@ -29,7 +29,9 @@ function AdvertsPage() {
           <ul className={styles.advertsList}>
             {adverts.map(({ id, photo, ...advert }) => (
               <li key={id}>
-                <Advert {...advert} />
+                <Link to={`/v1/adverts/${id}`}>
+                  <Advert {...advert} />
+                </Link>
               </li>
             ))}
           </ul>

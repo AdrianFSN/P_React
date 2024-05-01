@@ -5,8 +5,8 @@
 }
 
 .advertsList ul {
-  border: 1px solid black;
-  border-radius: 5px;
+  /*   border: 1px solid lightblue;
+  border-radius: 5px; */
   padding: 1rem;
 }
 
@@ -16,4 +16,9 @@
 
 .advertsList h2 {
   margin-bottom: 0.2rem;
+}
+
+.advertsList a {
+  text-decoration: none;
+  color: black;
 }
