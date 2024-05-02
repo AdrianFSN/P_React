@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { deleteAd, getAdvert } from "./service";
 import Layout from "../../components/layout/Layout";
 import Advert from "./components/Advert";
 import Button from "../../components/shared/Button";
 
 function AdvertPage() {
+  const location = useLocation();
   const navigate = useNavigate();
   const params = useParams();
   const [advert, setAdvert] = useState(null);
@@ -13,7 +14,8 @@ function AdvertPage() {
   const [error, setError] = useState(null);
   const resetError = () => {
     setError(null);
-    navigate("/v1/adverts"); // cambair para ir a la página de la que venía
+    const to = location.state?.from || "/";
+    navigate(to, { replace: true });
   };
 
   const [confirmDeletion, setConfirmDeletion] = useState(false);
@@ -64,13 +66,14 @@ function AdvertPage() {
           photo={advert.photo}
         />
       )}
-      {!confirmDeletion && (
+      {!confirmDeletion && !error && (
         <Button onClick={showConfirmDeletion}>Delete advert</Button>
       )}
       {error && (
-        <div className="AdvertPage-error" onClick={resetError}>
-          {error}
-        </div>
+        <div
+          className="AdvertPage-error"
+          onClick={resetError}
+        >{`${error}. Click this banner to get back`}</div>
       )}
       {confirmDeletion && (
         <div className="AdvertPage-confirm-deletion">
