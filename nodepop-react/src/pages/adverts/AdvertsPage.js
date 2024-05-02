@@ -4,7 +4,7 @@ import { getLatestAds } from "./service";
 import { Link } from "react-router-dom";
 import Layout from "../../components/layout/Layout";
 import Advert from "./components/Advert";
-import EmptyAdsList from "./components/EmptyAdsList";
+import EmptyList from "./components/EmptyAdsList";
 
 function AdvertsPage() {
   const [adverts, setAdvertsPanel] = useState([]);
@@ -27,7 +27,7 @@ function AdvertsPage() {
             ))}
           </ul>
         ) : (
-          <EmptyAdsList />
+          <EmptyList />
         )}
       </section>
     </Layout>

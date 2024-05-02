@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../../../components/shared/Button";
 
-const EmptyAdsList = () => {
+const EmptyList = () => {
   const navigate = useNavigate();
   const navigateToCreateNewAd = () => {
     navigate("/v1/adverts/new");
@@ -17,4 +17,4 @@ const EmptyAdsList = () => {
   );
 };
 
-export default EmptyAdsList;
+export default EmptyList;

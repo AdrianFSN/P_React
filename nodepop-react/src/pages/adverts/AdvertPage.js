@@ -64,6 +64,7 @@ function AdvertPage() {
           price={advert.price}
           tags={advert.tags}
           photo={advert.photo}
+          showImage={true}
         />
       )}
       {!confirmDeletion && !error && (
