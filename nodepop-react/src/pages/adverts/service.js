@@ -20,11 +20,15 @@ export function createNewAd(advert) {
     tags: [advert.tags],
     photo: advert.photo,
   };
-  console.log(advert.photo);
 
   return client.post(advertsUrl, newAdvert, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
   });
+}
+
+export function deleteAd(advertId) {
+  const url = `${advertsUrl}/${advertId}`;
+  return client.delete(url);
 }

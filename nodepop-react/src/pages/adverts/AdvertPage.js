@@ -1,20 +1,55 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getAdvert } from "./service";
+import { useNavigate, useParams } from "react-router-dom";
+import { deleteAd, getAdvert } from "./service";
 import Layout from "../../components/layout/Layout";
 import Advert from "./components/Advert";
+import Button from "../../components/shared/Button";
 
 export function AdvertPage() {
   const params = useParams();
   const [advert, setAdvert] = useState(null);
 
+  const [error, setError] = useState(null);
+  const resetError = () => setError(null);
+
+  const [confirmDeletion, setConfirmDeletion] = useState(false);
+  const [deletionRequest, setDeletionRequest] = useState(false);
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     async function getAdvertsFromService() {
-      const advert = await getAdvert(params.advertId);
-      setAdvert(advert);
+      try {
+        const advert = await getAdvert(params.advertId);
+        setAdvert(advert);
+      } catch (error) {
+        setError(error.message);
+      }
     }
     getAdvertsFromService();
   }, [params.advertId]);
+
+  const showConfirmDeletion = () => {
+    setConfirmDeletion(true);
+  };
+  const requestDeletion = () => {
+    setDeletionRequest(true);
+    setTimeout(() => {
+      handleAdDeletion();
+    }, 2000);
+  };
+  const cancelDeletion = () => {
+    setConfirmDeletion(false);
+  };
+
+  const handleAdDeletion = async () => {
+    try {
+      await deleteAd(advert.id);
+      navigate("/v1/adverts");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
   return (
     <Layout title="Advert info">
@@ -27,6 +62,24 @@ export function AdvertPage() {
           photo={advert.photo}
         />
       )}
+      {!confirmDeletion && (
+        <Button onClick={showConfirmDeletion}>Delete advert</Button>
+      )}
+      {error && (
+        <div className="AdvertPage-error" onClick={resetError}>
+          {error}
+        </div>
+      )}
+      {confirmDeletion && (
+        <div className="AdvertPage-confirm-deletion">
+          Are you sure you want to delete this advert?
+          <div>
+            <Button onClick={requestDeletion}>Delete</Button>
+            <Button onClick={cancelDeletion}>Cancel</Button>
+          </div>
+        </div>
+      )}
+      {deletionRequest && <div>Deleting advert</div>}
     </Layout>
   );
 }

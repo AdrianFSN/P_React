@@ -23,7 +23,6 @@ function NewAdvertForm() {
       [event.target.name]: event.target.value,
     }));
   };
-  console.log("Esto es tags ahora ", formValues.tags);
 
   const [checkBoxStatus, setCheckBoxStatus] = useState(true);
 

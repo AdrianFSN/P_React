@@ -5,7 +5,7 @@ const Advert = ({ id, name, price, sale, tags, photo }) => {
   return (
     <section className="single-advert">
       <ul key={id}>
-        {photo && <img src={`/${photo}`} alt="Advert offer" />}
+        {photo && <img src={`${photo}`} alt="Advert offer" />}
         <li>
           <h2>{name}</h2>
         </li>
