@@ -1,26 +1,10 @@
 import styles from "./AdvertsPage.module.css";
 import { useEffect, useState } from "react";
 import { getLatestAds } from "./service";
-import { Link, useNavigate } from "react-router-dom";
-import Button from "../../components/shared/Button";
+import { Link } from "react-router-dom";
 import Layout from "../../components/layout/Layout";
 import Advert from "./components/Advert";
-
-const EmptyList = () => {
-  const navigate = useNavigate();
-  const navigateToCreateNewAd = () => {
-    navigate("/v1/adverts/new");
-  };
-
-  return (
-    <section>
-      <p>Nothing to see here... Be the first one and publish your advert!</p>
-      <Button onClick={navigateToCreateNewAd} $variant="primary">
-        Create advert
-      </Button>
-    </section>
-  );
-};
+import EmptyAdsList from "./components/EmptyAdsList";
 
 function AdvertsPage() {
   const [adverts, setAdvertsPanel] = useState([]);
@@ -43,7 +27,7 @@ function AdvertsPage() {
             ))}
           </ul>
         ) : (
-          <EmptyList />
+          <EmptyAdsList />
         )}
       </section>
     </Layout>

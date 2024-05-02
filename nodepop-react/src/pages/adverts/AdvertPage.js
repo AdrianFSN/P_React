@@ -6,16 +6,18 @@ import Advert from "./components/Advert";
 import Button from "../../components/shared/Button";
 
 function AdvertPage() {
+  const navigate = useNavigate();
   const params = useParams();
   const [advert, setAdvert] = useState(null);
 
   const [error, setError] = useState(null);
-  const resetError = () => setError(null);
+  const resetError = () => {
+    setError(null);
+    navigate("/v1/adverts"); // cambair para ir a la página de la que venía
+  };
 
   const [confirmDeletion, setConfirmDeletion] = useState(false);
   const [deletionRequest, setDeletionRequest] = useState(false);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     async function getAdvertsFromService() {

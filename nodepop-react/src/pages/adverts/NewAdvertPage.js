@@ -1,5 +1,5 @@
 import Layout from "../../components/layout/Layout";
-import NewAdvertForm from "./NewAdvertForm";
+import NewAdvertForm from "./components/NewAdvertForm";
 
 function NewAdvertPage({ ...props }) {
   return (

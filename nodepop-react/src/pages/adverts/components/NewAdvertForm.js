@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { createNewAd } from "./service";
+import { createNewAd } from "../service";
 import { useNavigate } from "react-router-dom";
-import FormField from "../../components/shared/FormField";
-import CheckBox from "../../components/shared/CheckBox";
-import Button from "../../components/shared/Button";
-import SelectMenu from "../../components/shared/SelectMenu";
-import FileUploadInput from "../../components/shared/FileInput";
+import FormField from "../../../components/shared/FormField";
+import CheckBox from "../../../components/shared/CheckBox";
+import Button from "../../../components/shared/Button";
+import SelectMenu from "../../../components/shared/SelectMenu";
+import FileUploadInput from "../../../components/shared/FileInput";
 
 function NewAdvertForm() {
   const navigate = useNavigate();
@@ -62,7 +62,6 @@ function NewAdvertForm() {
     event.preventDefault();
     try {
       const createdAd = await createNewAd(formValues);
-      console.log("Esto es createdAd.id", createdAd.id);
       navigate(`/v1/adverts/${createdAd.id}`);
     } catch (error) {
       if (error.status === 401) {
