@@ -102,7 +102,6 @@ function NewAdvertForm() {
       <SelectMenu
         type="text"
         name="tags"
-        //optionsArray={["amor", "pasión", "toros"]}
         optionsArray={availableTags}
         value={selectedTags}
         multiple
