@@ -5,7 +5,7 @@ import Layout from "../../components/layout/Layout";
 import Advert from "./components/Advert";
 import Button from "../../components/shared/Button";
 
-export function AdvertPage() {
+function AdvertPage() {
   const params = useParams();
   const [advert, setAdvert] = useState(null);
 
@@ -83,3 +83,4 @@ export function AdvertPage() {
     </Layout>
   );
 }
+export default AdvertPage;

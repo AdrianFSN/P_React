@@ -1,6 +1,7 @@
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import "./App.css";
 import AdvertsPage from "./pages/adverts/AdvertsPage";
+import AdvertPage from "./pages/adverts/AdvertPage";
 import LoginPage from "./pages/auth/LoginPage";
 import RequireAuth from "./pages/auth/components/RequireAuth";
 import NewAdvertPage from "./pages/adverts/NewAdvertPage";
@@ -23,6 +24,7 @@ function App() {
       >
         <Route index element={<AdvertsPage />} />
         <Route path="new" element={<NewAdvertPage />} />
+        <Route path=":advertId" element={<AdvertPage />} />
       </Route>
       <Route path="/" element={<Navigate to="/v1/adverts" />} />
       <Route path="/404" element={<NotFound />} />
