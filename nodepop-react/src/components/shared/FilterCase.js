@@ -1,6 +1,6 @@
 import "./FilterCase.css";
 
-function FilterCase({ value, ...props }) {
+function FilterCase({ ...props }) {
   return (
     <section>
       <label>

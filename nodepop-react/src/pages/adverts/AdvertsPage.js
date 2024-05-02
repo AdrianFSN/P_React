@@ -9,15 +9,13 @@ import FilterCase from "../../components/shared/FilterCase";
 
 function AdvertsPage() {
   const [adverts, setAdvertsPanel] = useState([]);
-  const [filter, setFilter] = useState("");
+  const [filterByName, setFilter] = useState("");
 
-  const handleFilter = (event) => {
+  const handleFilterByName = (event) => {
     setFilter(event.target.value);
   };
-  const filteredAds = adverts.filter(
-    (advert) =>
-      advert.name.toLowerCase().startsWith(filter) ||
-      advert.name.includes(filter)
+  const filteredAds = adverts.filter((advert) =>
+    advert.name.toLowerCase().includes(filterByName.toLowerCase())
   );
 
   useEffect(() => {
@@ -26,11 +24,13 @@ function AdvertsPage() {
 
   return (
     <Layout title="List of adverts">
-      <FilterCase
-        value={filter}
-        onChange={handleFilter}
-        placeholder="Filter by name"
-      />
+      <section className="AdvertsPage-filters">
+        <FilterCase
+          value={filterByName}
+          onChange={handleFilterByName}
+          placeholder="Filter by name"
+        />
+      </section>
       <section>
         {adverts.length ? (
           <ul className={styles.advertsList}>
