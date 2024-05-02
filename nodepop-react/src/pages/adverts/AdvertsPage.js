@@ -6,6 +6,7 @@ import Layout from "../../components/layout/Layout";
 import Advert from "./components/Advert";
 import EmptyList from "./components/EmptyAdsList";
 import FilterCase from "../../components/shared/FilterCase";
+import SelectMenu from "../../components/shared/SelectMenu";
 
 function AdvertsPage() {
   const [adverts, setAdvertsPanel] = useState([]);
@@ -30,6 +31,7 @@ function AdvertsPage() {
           onChange={handleFilterByName}
           placeholder="Filter by name"
         />
+        <SelectMenu multiple />
       </section>
       <section>
         {adverts.length ? (

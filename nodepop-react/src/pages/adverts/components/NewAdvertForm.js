@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { createNewAd, getTags } from "../service";
+import { createNewAd } from "../service";
 import { useNavigate } from "react-router-dom";
 import FormField from "../../../components/shared/FormField";
 import CheckBox from "../../../components/shared/CheckBox";
@@ -18,21 +18,8 @@ function NewAdvertForm() {
   });
 
   const [checkBoxStatus, setCheckBoxStatus] = useState(true);
-  const [availableTags, setAvailableTags] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
   const [uploadedFile, setUploadedFile] = useState(null);
-
-  useEffect(() => {
-    const getTagsFromApi = async () => {
-      try {
-        const response = await getTags();
-        setAvailableTags(response);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    getTagsFromApi();
-  }, []);
 
   const handleChange = (event) => {
     setFormValues((currentFormValues) => ({
@@ -102,7 +89,6 @@ function NewAdvertForm() {
       <SelectMenu
         type="text"
         name="tags"
-        optionsArray={availableTags}
         value={selectedTags}
         multiple
         onChange={handleSelectMenuChange}

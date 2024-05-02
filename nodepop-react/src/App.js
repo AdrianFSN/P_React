@@ -8,7 +8,6 @@ import NewAdvertPage from "./pages/adverts/NewAdvertPage";
 import NotFound from "./pages/NotFound";
 
 function App() {
-  //return <section>{isLogged ? <AdvertsPage /> : <LoginPage />}</section>;
   return (
     <Routes>
       <Route path="/auth/login" element={<LoginPage />} />
