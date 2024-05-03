@@ -19,6 +19,25 @@ function AdvertsPage() {
   const [filterByTag, setFilterByTag] = useState([]);
   const [filterByMaxPrice, setFilterByMaxPrice] = useState(maxPriceAvailable);
   const [filterByMinPrice, setFilterByMinPrice] = useState(minPriceAvailable);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const calculateMaxMinPriceAvailable = () => {
+      const prices = adverts.map((advert) => advert.price);
+      setMaxPriceAvailable(Math.max.apply(null, prices));
+      setMinPriceAvailable(Math.min.apply(null, prices));
+      setLoading(false);
+    };
+
+    calculateMaxMinPriceAvailable();
+  }, [adverts]);
+
+  useEffect(() => {
+    if (!loading) {
+      setFilterByMaxPrice(maxPriceAvailable);
+      setFilterByMinPrice(minPriceAvailable);
+    }
+  }, [loading, maxPriceAvailable, minPriceAvailable]);
 
   console.log("Esto es filterbyMaxproce", filterByMaxPrice);
 
@@ -49,15 +68,6 @@ function AdvertsPage() {
     console.log("Estoy tocando el slider2 ", event);
   };
 
-  useEffect(() => {
-    const calculateMaxMinPriceAvailable = () => {
-      const prices = adverts.map((advert) => advert.price);
-      setMaxPriceAvailable(Math.max.apply(null, prices));
-      setMinPriceAvailable(Math.min.apply(null, prices));
-    };
-
-    calculateMaxMinPriceAvailable();
-  }, [adverts]);
   console.log("Èsto es mamaxPriceAvailable ", maxPriceAvailable);
 
   const resetFilters = () => {
@@ -151,6 +161,7 @@ function AdvertsPage() {
           >{`${error}. Click this banner to get back`}</div>
         )}
       </div>
+      <div>{loading && <div className="Nodepop-loading">Loading</div>}</div>
     </Layout>
   );
 }
