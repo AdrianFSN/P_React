@@ -72,7 +72,7 @@ function AdvertPage() {
       )}
       {error && (
         <div
-          className="AdvertPage-error"
+          className="Nodepop-error"
           onClick={resetError}
         >{`${error}. Click this banner to get back`}</div>
       )}

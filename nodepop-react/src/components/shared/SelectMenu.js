@@ -5,6 +5,9 @@ import { getTags } from "../../pages/adverts/service";
 
 const SelectMenu = ({ className, label, optionsArray, ...props }) => {
   const [availableTags, setAvailableTags] = useState([]);
+  const [error, setError] = useState(null);
+
+  const resetError = () => setError(null);
 
   useEffect(() => {
     if (optionsArray) {
@@ -15,7 +18,7 @@ const SelectMenu = ({ className, label, optionsArray, ...props }) => {
           const response = await getTags();
           setAvailableTags(response);
         } catch (error) {
-          console.log(error.message);
+          setError(error.message);
         }
       };
       getTagsFromApi();
@@ -23,13 +26,23 @@ const SelectMenu = ({ className, label, optionsArray, ...props }) => {
   }, [optionsArray]);
 
   return (
-    <select className={clsx("select-menu", className)} {...props}>
-      {availableTags.map((item, index) => (
-        <option key={index} value={item}>
-          {item}
-        </option>
-      ))}
-    </select>
+    <div>
+      <select className={clsx("select-menu", className)} {...props}>
+        {availableTags.map((item, index) => (
+          <option key={index} value={item}>
+            {item}
+          </option>
+        ))}
+      </select>
+      <div>
+        {error && (
+          <div
+            className="Nodepop-error"
+            onClick={resetError}
+          >{`${error}. Click this banner to get back`}</div>
+        )}
+      </div>
+    </div>
   );
 };
 

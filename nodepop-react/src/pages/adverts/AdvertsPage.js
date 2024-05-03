@@ -10,14 +10,36 @@ import SelectMenu from "../../components/shared/SelectMenu";
 
 function AdvertsPage() {
   const [adverts, setAdvertsPanel] = useState([]);
-  const [filterByName, setFilter] = useState("");
+  const [filterByName, setFilterByName] = useState("");
+  const [filterByTag, setFilterByTag] = useState([]);
 
   const handleFilterByName = (event) => {
-    setFilter(event.target.value);
+    setFilterByName(event.target.value);
   };
-  const filteredAds = adverts.filter((advert) =>
-    advert.name.toLowerCase().includes(filterByName.toLowerCase())
-  );
+
+  const handleFilterByTag = (event) => {
+    event.preventDefault();
+    const selectedOptions = Array.from(
+      event.target.selectedOptions,
+      (option) => option.value
+    );
+
+    setFilterByTag(selectedOptions);
+  };
+
+  const filteredAds = adverts.filter((advert) => {
+    const resultByName = advert.name
+      .toLowerCase()
+      .includes(filterByName.toLowerCase());
+
+    let resultByTag = true;
+
+    if (filterByTag.length > 0) {
+      resultByTag = advert.tags.every((tag) => filterByTag.includes(tag));
+    }
+
+    return resultByName && resultByTag;
+  });
 
   useEffect(() => {
     getLatestAds().then((adverts) => setAdvertsPanel(adverts));
@@ -31,7 +53,7 @@ function AdvertsPage() {
           onChange={handleFilterByName}
           placeholder="Filter by name"
         />
-        <SelectMenu multiple />
+        <SelectMenu onChange={handleFilterByTag} multiple />
       </section>
       <section>
         {adverts.length ? (
