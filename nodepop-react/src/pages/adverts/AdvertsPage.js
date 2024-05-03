@@ -13,10 +13,12 @@ import SliderNodePop from "../../components/shared/Slider";
 function AdvertsPage() {
   const [adverts, setAdvertsPanel] = useState([]);
   const [maxPriceAvailable, setMaxPriceAvailable] = useState(0);
+  const [minPriceAvailable, setMinPriceAvailable] = useState(0);
   const [filteredAdverts, setFilteredAdverts] = useState([]);
   const [filterByName, setFilterByName] = useState("");
   const [filterByTag, setFilterByTag] = useState([]);
   const [filterByMaxPrice, setFilterByMaxPrice] = useState(maxPriceAvailable);
+  const [filterByMinPrice, setFilterByMinPrice] = useState(minPriceAvailable);
 
   console.log("Esto es filterbyMaxproce", filterByMaxPrice);
 
@@ -42,14 +44,19 @@ function AdvertsPage() {
     setFilterByMaxPrice(event);
     console.log("Estoy tocando el slider ", event);
   };
+  const handleFilterByMinPrice = (event) => {
+    setFilterByMinPrice(event);
+    console.log("Estoy tocando el slider2 ", event);
+  };
 
   useEffect(() => {
-    const calculateMaxPriceAvailable = () => {
+    const calculateMaxMinPriceAvailable = () => {
       const prices = adverts.map((advert) => advert.price);
       setMaxPriceAvailable(Math.max.apply(null, prices));
+      setMinPriceAvailable(Math.min.apply(null, prices));
     };
 
-    calculateMaxPriceAvailable();
+    calculateMaxMinPriceAvailable();
   }, [adverts]);
   console.log("Èsto es mamaxPriceAvailable ", maxPriceAvailable);
 
@@ -57,6 +64,7 @@ function AdvertsPage() {
     setFilterByName("");
     setFilterByTag([]);
     setFilterByMaxPrice(0);
+    setFilterByMinPrice(0);
   };
 
   useEffect(() => {
@@ -84,12 +92,14 @@ function AdvertsPage() {
         (filterByTag.every((tag) => advert.tags.includes(tag)) &&
           filterByTag.length === advert.tags.length);
 
-      const resultByMaxPrice = advert.price >= filterByMaxPrice;
+      const resultByPriceRange =
+        advert.price <= filterByMaxPrice && advert.price >= filterByMinPrice;
 
-      return resultByName && resultByTag && resultByMaxPrice;
+      return resultByName && resultByTag && resultByPriceRange;
     });
+
     setFilteredAdverts(filteredAds);
-  }, [adverts, filterByName, filterByTag, filterByMaxPrice]);
+  }, [adverts, filterByName, filterByTag, filterByMaxPrice, filterByMinPrice]);
 
   return (
     <Layout title="List of adverts">
@@ -101,11 +111,20 @@ function AdvertsPage() {
         />
         <SelectMenu onChange={handleFilterByTag} multiple />
         <SliderNodePop
+          min={minPriceAvailable}
           max={maxPriceAvailable}
           value={filterByMaxPrice}
           className="SliderNodepop"
           label={`Max Price Range: ${filterByMaxPrice} €`}
           onChange={handleFilterByMaxPrice}
+        ></SliderNodePop>
+        <SliderNodePop
+          min={minPriceAvailable}
+          max={maxPriceAvailable}
+          value={filterByMinPrice}
+          className="SliderNodepop"
+          label={`Min Price Range: ${filterByMinPrice} €`}
+          onChange={handleFilterByMinPrice}
         ></SliderNodePop>
         <Button onClick={resetFilters}>Reset filters</Button>
       </section>
