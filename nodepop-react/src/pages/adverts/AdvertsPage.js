@@ -56,6 +56,7 @@ function AdvertsPage() {
   const resetFilters = () => {
     setFilterByName("");
     setFilterByTag([]);
+    setFilterByMaxPrice(0);
   };
 
   useEffect(() => {
