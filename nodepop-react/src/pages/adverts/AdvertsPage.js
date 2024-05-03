@@ -10,6 +10,7 @@ import SelectMenu from "../../components/shared/SelectMenu";
 
 function AdvertsPage() {
   const [adverts, setAdvertsPanel] = useState([]);
+  const [filteredAdverts, setFilteredAdverts] = useState([]);
   const [filterByName, setFilterByName] = useState("");
   const [filterByTag, setFilterByTag] = useState([]);
 
@@ -27,23 +28,26 @@ function AdvertsPage() {
     setFilterByTag(selectedOptions);
   };
 
-  const filteredAds = adverts.filter((advert) => {
-    const resultByName = advert.name
-      .toLowerCase()
-      .includes(filterByName.toLowerCase());
-
-    let resultByTag = true;
-
-    if (filterByTag.length > 0) {
-      resultByTag = advert.tags.every((tag) => filterByTag.includes(tag));
-    }
-
-    return resultByName && resultByTag;
-  });
+  useEffect(() => {
+    getLatestAds().then((adverts) => {
+      setAdvertsPanel(adverts);
+      setFilteredAdverts(adverts);
+    });
+  }, []);
 
   useEffect(() => {
-    getLatestAds().then((adverts) => setAdvertsPanel(adverts));
-  }, []);
+    const filteredAds = adverts.filter((advert) => {
+      const resultByName = advert.name
+        .toLowerCase()
+        .includes(filterByName.toLowerCase());
+      const resultByTag =
+        filterByTag.length === 0 ||
+        advert.tags.every((tag) => filterByTag.includes(tag));
+
+      return resultByName && resultByTag;
+    });
+    setFilteredAdverts(filteredAds);
+  }, [adverts, filterByName, filterByTag]);
 
   return (
     <Layout title="List of adverts">
@@ -58,7 +62,7 @@ function AdvertsPage() {
       <section>
         {adverts.length ? (
           <ul className={styles.advertsList}>
-            {filteredAds.map(({ id, photo, ...advert }) => (
+            {filteredAdverts.map(({ id, photo, ...advert }) => (
               <li key={id}>
                 <Link to={`/v1/adverts/${id}`}>
                   <Advert {...advert} />
