@@ -7,12 +7,16 @@ import Advert from "./components/Advert";
 import EmptyList from "./components/EmptyAdsList";
 import FilterCase from "../../components/shared/FilterCase";
 import SelectMenu from "../../components/shared/SelectMenu";
+import Button from "../../components/shared/Button";
 
 function AdvertsPage() {
   const [adverts, setAdvertsPanel] = useState([]);
   const [filteredAdverts, setFilteredAdverts] = useState([]);
   const [filterByName, setFilterByName] = useState("");
   const [filterByTag, setFilterByTag] = useState([]);
+  const [error, setError] = useState(null);
+
+  const resetError = () => setError(null);
 
   const handleFilterByName = (event) => {
     setFilterByName(event.target.value);
@@ -28,11 +32,23 @@ function AdvertsPage() {
     setFilterByTag(selectedOptions);
   };
 
+  const resetFilters = (event) => {
+    setFilterByName("");
+    setFilterByTag([]);
+  };
+
   useEffect(() => {
-    getLatestAds().then((adverts) => {
-      setAdvertsPanel(adverts);
-      setFilteredAdverts(adverts);
-    });
+    const fetchData = async () => {
+      try {
+        const adverts = await getLatestAds();
+        setAdvertsPanel(adverts);
+        setFilteredAdverts(adverts);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -58,6 +74,7 @@ function AdvertsPage() {
           placeholder="Filter by name"
         />
         <SelectMenu onChange={handleFilterByTag} multiple />
+        <Button onClick={resetFilters}>Reset filters</Button>
       </section>
       <section>
         {adverts.length ? (
@@ -74,6 +91,14 @@ function AdvertsPage() {
           <EmptyList />
         )}
       </section>
+      <div>
+        {error && (
+          <div
+            className="Nodepop-error"
+            onClick={resetError}
+          >{`${error}. Click this banner to get back`}</div>
+        )}
+      </div>
     </Layout>
   );
 }
