@@ -62,6 +62,7 @@ function AdvertPage() {
           id={advert.id}
           name={advert.name}
           price={advert.price}
+          sale={advert.sale}
           tags={advert.tags}
           photo={advert.photo}
           showImage={true}

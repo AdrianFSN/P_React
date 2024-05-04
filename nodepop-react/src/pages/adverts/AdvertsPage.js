@@ -40,11 +40,6 @@ function AdvertsPage() {
     }
   }, [loading, maxPriceAvailable, minPriceAvailable]);
 
-  console.log("Esto es filterbyMaxprice", filterByMaxPrice);
-  console.log("Esto es filterbyMinprice", filterByMinPrice);
-  console.log("Esto es maxPriceAvailable", maxPriceAvailable);
-  console.log("Esto es minPriceAvailable", minPriceAvailable);
-
   const [error, setError] = useState(null);
 
   const resetError = () => setError(null);
@@ -66,10 +61,7 @@ function AdvertsPage() {
   const handleFilterByPriceRange = (event) => {
     setFilterByMinPrice(event[0]);
     setFilterByMaxPrice(event[1]);
-    console.log("Esto es el event del slider: ", event);
   };
-
-  console.log("Èsto es mamaxPriceAvailable ", maxPriceAvailable);
 
   const resetFilters = () => {
     setFilterByName("");
@@ -91,6 +83,8 @@ function AdvertsPage() {
 
     fetchData();
   }, []);
+
+  console.log("este es el panel de anuncios ", adverts);
 
   useEffect(() => {
     const filteredAds = adverts.filter((advert) => {

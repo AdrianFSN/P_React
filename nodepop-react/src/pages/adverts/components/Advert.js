@@ -1,17 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Advert.css";
 import ImageNotAvailable from "../../../assets/ImageNotAvailable.jpg";
 
 const Advert = ({ id, name, price, sale, tags, photo, showImage }) => {
   const backupPhoto = ImageNotAvailable;
-  //const [pictureToShow, setPictureToShow] = useState(backupPhoto);
   const [pictureToShow] = useState(photo || backupPhoto);
-
-  /*   useEffect(() => {
-    if (photo) {
-      setPictureToShow(photo);
-    }
-  }, [photo, backupPhoto]); */
 
   return (
     <section className="single-advert">

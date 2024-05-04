@@ -28,8 +28,13 @@ function NewAdvertForm() {
     }));
   };
 
-  const handleCheckboxChange = () => {
-    setCheckBoxStatus((prevStatus) => !prevStatus);
+  const handleCheckboxChange = (event) => {
+    const newValue = event.target.checked;
+    setCheckBoxStatus(newValue);
+    setFormValues((prevValues) => ({
+      ...prevValues,
+      sale: newValue,
+    }));
   };
 
   const handleSelectMenuChange = (event) => {
@@ -46,9 +51,9 @@ function NewAdvertForm() {
     setUploadedFile(file);
   };
 
-  const { name, sale, price, tags } = formValues;
+  const { name, price, tags } = formValues;
   const buttonDisabled =
-    !name || !sale || price <= 0 || isNaN(price) || tags.length === 0;
+    !name || price <= 0 || isNaN(price) || tags.length === 0;
 
   useEffect(() => {
     setFormValues((currentFormValues) => ({
