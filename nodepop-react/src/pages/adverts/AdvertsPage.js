@@ -8,7 +8,8 @@ import EmptyList from "./components/EmptyAdsList";
 import FilterCase from "../../components/shared/FilterCase";
 import SelectMenu from "../../components/shared/SelectMenu";
 import Button from "../../components/shared/Button";
-import SliderNodePop from "../../components/shared/Slider";
+//import SliderNodePop from "../../components/shared/Slider";
+import SliderRange from "../../components/shared/SliderRange";
 
 function AdvertsPage() {
   const [adverts, setAdvertsPanel] = useState([]);
@@ -39,7 +40,10 @@ function AdvertsPage() {
     }
   }, [loading, maxPriceAvailable, minPriceAvailable]);
 
-  console.log("Esto es filterbyMaxproce", filterByMaxPrice);
+  console.log("Esto es filterbyMaxprice", filterByMaxPrice);
+  console.log("Esto es filterbyMinprice", filterByMinPrice);
+  console.log("Esto es maxPriceAvailable", maxPriceAvailable);
+  console.log("Esto es minPriceAvailable", minPriceAvailable);
 
   const [error, setError] = useState(null);
 
@@ -59,13 +63,10 @@ function AdvertsPage() {
     setFilterByTag(selectedOptions);
   };
 
-  const handleFilterByMaxPrice = (event) => {
-    setFilterByMaxPrice(event);
-    console.log("Estoy tocando el slider ", event);
-  };
-  const handleFilterByMinPrice = (event) => {
-    setFilterByMinPrice(event);
-    console.log("Estoy tocando el slider2 ", event);
+  const handleFilterByPriceRange = (event) => {
+    setFilterByMinPrice(event[0]);
+    setFilterByMaxPrice(event[1]);
+    console.log("Esto es el event del slider: ", event);
   };
 
   console.log("Èsto es mamaxPriceAvailable ", maxPriceAvailable);
@@ -73,8 +74,8 @@ function AdvertsPage() {
   const resetFilters = () => {
     setFilterByName("");
     setFilterByTag([]);
-    setFilterByMaxPrice(0);
-    setFilterByMinPrice(0);
+    setFilterByMaxPrice(maxPriceAvailable);
+    setFilterByMinPrice(minPriceAvailable);
   };
 
   useEffect(() => {
@@ -120,23 +121,16 @@ function AdvertsPage() {
           placeholder="Filter by name"
         />
         <SelectMenu onChange={handleFilterByTag} multiple />
-        <SliderNodePop
-          min={minPriceAvailable}
-          max={maxPriceAvailable}
-          value={filterByMaxPrice}
-          className="SliderNodepop"
-          label={`Max Price Range: ${filterByMaxPrice} €`}
-          onChange={handleFilterByMaxPrice}
-        ></SliderNodePop>
-        <SliderNodePop
-          min={minPriceAvailable}
-          max={maxPriceAvailable}
-          value={filterByMinPrice}
-          className="SliderNodepop"
-          label={`Min Price Range: ${filterByMinPrice} €`}
-          onChange={handleFilterByMinPrice}
-        ></SliderNodePop>
         <Button onClick={resetFilters}>Reset filters</Button>
+        <SliderRange
+          min={minPriceAvailable}
+          max={maxPriceAvailable}
+          value={[filterByMinPrice, filterByMaxPrice]}
+          className="SliderNodepop"
+          label={`Min price: ${filterByMinPrice} € - Max price: ${filterByMaxPrice} €`}
+          onChange={handleFilterByPriceRange}
+          allowCross={false}
+        ></SliderRange>
       </section>
       <section>
         {adverts.length ? (
