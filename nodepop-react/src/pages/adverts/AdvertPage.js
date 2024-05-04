@@ -12,6 +12,8 @@ function AdvertPage() {
   const [advert, setAdvert] = useState(null);
 
   const [error, setError] = useState(null);
+  const [deletionError, setDeletionError] = useState(null);
+
   const resetError = () => {
     setError(null);
     const to = location.state?.from || "/";
@@ -27,11 +29,18 @@ function AdvertPage() {
         const advert = await getAdvert(params.advertId);
         setAdvert(advert);
       } catch (error) {
-        setError(error.message);
+        if (error.response.data.statusCode === 404) {
+          navigate("/404");
+        }
+        console.log("Error estatusCode", error.statusCode);
+        console.log(
+          "Error response data statuscode",
+          error.response.data.statusCode
+        );
       }
     }
     getAdvertsFromService();
-  }, [params.advertId]);
+  }, [params.advertId, navigate]);
 
   const showConfirmDeletion = () => {
     setConfirmDeletion(true);

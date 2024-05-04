@@ -16,6 +16,9 @@ export default function LoginPage() {
     password: "",
   });
 
+  const [error, setError] = useState(null);
+  const [isFetching, setIsFetching] = useState(false);
+
   const [checkBoxStatus, setCheckBoxStatus] = useState(false);
 
   const handleCheckboxChange = () => {
@@ -29,17 +32,29 @@ export default function LoginPage() {
     }));
   };
   const { email, password } = formValues;
-  const buttonDisabled = !email || !password;
+  const buttonDisabled = !email || !password || isFetching;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    await login(formValues, checkBoxStatus);
-    onLogin();
+    try {
+      setIsFetching(true);
+      await login(formValues, checkBoxStatus);
+      onLogin();
 
-    const to = location.state?.from || "/";
-    navigate(to, { replace: true });
+      const to = location.state?.from || "/";
+      navigate(to, { replace: true });
+    } catch (error) {
+      setError(error);
+      console.log(error);
+    } finally {
+      setIsFetching(false);
+    }
   };
+  const resetError = () => {
+    setError(null);
+  };
+
   return (
     <div className="loginPage">
       <h1 className="loginPage-title">Log in to Nodepop</h1>
@@ -74,6 +89,14 @@ export default function LoginPage() {
           onChange={handleCheckboxChange}
         ></CheckBox>
       </form>
+      <div>
+        {error && (
+          <div
+            className="Nodepop-error"
+            onClick={resetError}
+          >{`${error}. Click this banner to get back`}</div>
+        )}
+      </div>
     </div>
   );
 }

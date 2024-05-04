@@ -84,8 +84,6 @@ function AdvertsPage() {
     fetchData();
   }, []);
 
-  console.log("este es el panel de anuncios ", adverts);
-
   useEffect(() => {
     const filteredAds = adverts.filter((advert) => {
       const resultByName = advert.name
@@ -108,6 +106,7 @@ function AdvertsPage() {
 
   return (
     <Layout title="List of adverts">
+      <div>{loading && <div className="Nodepop-loading">Loading...</div>}</div>
       <section className="AdvertsPage-filters">
         <FilterCase
           value={filterByName}
@@ -149,7 +148,6 @@ function AdvertsPage() {
           >{`${error}. Click this banner to get back`}</div>
         )}
       </div>
-      <div>{loading && <div className="Nodepop-loading">Loading</div>}</div>
     </Layout>
   );
 }
