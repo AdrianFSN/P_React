@@ -12,7 +12,6 @@ function AdvertPage() {
   const [advert, setAdvert] = useState(null);
 
   const [error, setError] = useState(null);
-  const [deletionError, setDeletionError] = useState(null);
 
   const resetError = () => {
     setError(null);
@@ -32,11 +31,6 @@ function AdvertPage() {
         if (error.response.data.statusCode === 404) {
           navigate("/404");
         }
-        console.log("Error estatusCode", error.statusCode);
-        console.log(
-          "Error response data statuscode",
-          error.response.data.statusCode
-        );
       }
     }
     getAdvertsFromService();

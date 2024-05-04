@@ -7,6 +7,7 @@ import storage from "./pages/utils/storage";
 import { setAuthorizationHeader } from "./api/client";
 import { AuthContextProvider } from "./pages/auth/context";
 import { BrowserRouter } from "react-router-dom";
+import ErrorBoundary from "./components/errors/errorBoundary";
 
 const accessToken = storage.get("auth");
 if (accessToken) {
@@ -16,11 +17,13 @@ if (accessToken) {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <AuthContextProvider isDefaultLogged={!!accessToken}>
-        <App />
-      </AuthContextProvider>
-    </BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <AuthContextProvider isDefaultLogged={!!accessToken}>
+          <App />
+        </AuthContextProvider>
+      </BrowserRouter>
+    </ErrorBoundary>
   </React.StrictMode>
 );
 
