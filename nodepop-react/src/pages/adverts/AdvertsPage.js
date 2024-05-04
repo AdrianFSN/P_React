@@ -108,13 +108,17 @@ function AdvertsPage() {
     <Layout title="List of adverts">
       <div>{loading && <div className="Nodepop-loading">Loading...</div>}</div>
       <section className="AdvertsPage-filters">
+        <div>
+          <h3>Filters section</h3>
+        </div>
         <FilterCase
           value={filterByName}
           onChange={handleFilterByName}
           placeholder="Filter by name"
         />
+        <div>Filter by category</div>
         <SelectMenu onChange={handleFilterByTag} multiple />
-        <Button onClick={resetFilters}>Reset filters</Button>
+        <div>Filter by price</div>
         <SliderRange
           min={minPriceAvailable}
           max={maxPriceAvailable}
@@ -124,6 +128,7 @@ function AdvertsPage() {
           onChange={handleFilterByPriceRange}
           allowCross={false}
         ></SliderRange>
+        <Button onClick={resetFilters}>Reset filters</Button>
       </section>
       <section>
         {adverts.length ? (
