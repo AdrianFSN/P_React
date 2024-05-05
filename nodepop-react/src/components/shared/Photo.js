@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ImageNotAvailable from "../../assets/ImageNotAvailable.jpg";
 
-function Photo({ photo, alt }) {
+function Photo({ photo, alt, ...props }) {
   const [photoUrl, setPhotoUrl] = useState(ImageNotAvailable);
 
   useEffect(() => {
@@ -10,7 +10,7 @@ function Photo({ photo, alt }) {
     }
   }, [photo]);
 
-  return <img src={photoUrl} alt={alt}></img>;
+  return <img src={photoUrl} alt={alt} {...props}></img>;
 }
 
 export default Photo;

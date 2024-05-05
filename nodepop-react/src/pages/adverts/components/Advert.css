@@ -1,8 +1,33 @@
 .single-advert {
-  border: 1px solid rgba(218, 239, 85, 0.339);
-  border-radius: 5px;
-  background-color: rgba(152, 195, 227, 0.087);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  max-width: 350px;
 }
+
+.NodepopImage-advert {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.single-advert h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
 .single-advert ul {
   list-style: none;
+  padding: 0;
+}
+
+.single-advert li {
+  margin-bottom: 5px;
+}
+
+.single-advert li:last-child {
+  margin-bottom: 0;
 }
