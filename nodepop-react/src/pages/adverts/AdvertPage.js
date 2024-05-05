@@ -89,7 +89,9 @@ function AdvertPage() {
           </div>
         </div>
       )}
-      {deletionRequest && <div>Deleting advert</div>}
+      {deletionRequest && (
+        <div className="Nodepop-success">Deleting advert...</div>
+      )}
     </Layout>
   );
 }

@@ -36,7 +36,7 @@ Served by the component LoginPage, it is the unique public route in the project.
 
 If you wan't to storage your authentication token, click the checkbox in the login form:
 
-![alt text](image.png)
+![alt text](./images-readme/image.png)
 
 ### Protected routes
 
@@ -44,7 +44,7 @@ You need to login in order to see these routes.
 
 #### /adverts
 
-![alt text](image-2.png)
+![alt text](./images-readme/image-2.png)
 
 Served by the component AdvertsPage. If any, it shows a list of the adverts available at that time. In this screen, the adverts show:
 
@@ -59,7 +59,7 @@ If there is no advert to show, user will get a call to action with a button to c
 
 There is a place reserved for filters in this screen:
 
-![alt text](image-1.png)
+![alt text](./images-readme/image-1.png)
 
 - By name: filters by the name of the ad.
 - By category: filters by the tags of the ad. To get a match, the advert needs to have the same tags marked in the select input.
@@ -71,7 +71,7 @@ By clicking in one of the adverts you will navigate to the advert's detail scree
 
 Here you can see the detail of the advert you want. It is managed by the component AdvertPage.
 
-![alt text](image-4.png)
+![alt text](./images-readme/image-4.png){width=250px}
 
 The advert detail shows:
 
@@ -83,27 +83,27 @@ The advert detail shows:
 
 If the advert doesn't have any photo, it will show a default backup image:
 
-![alt text](image-11.png)
+![alt text](./images-readme/image-11.png)
 
 ##### Delete advert
 
 The detail of the advcert includes a setup to delete the advert. A confirmation flow is shown before deleting the ad.
 
-![alt text](image-7.png)
+![alt text](./images-readme/image-7.png)
 
 Confirmation:
 
-![alt text](image-8.png)
+![alt text](./images-readme/image-8.png)
 
 Deletion;
 
-![alt text](image-10.png)
+![alt text](./images-readme/image12.png)
 
 #### /adverts/new
 
 This one is served by the component NewAdvertPage. It is a form to submit new adverts.
 
-![alt text](image-6.png)
+![alt text](./images-readme/image-6.png)
 
 All inputs are required except "photo". The sbmit button will stay disabled until the form is fulfilled.
 
@@ -135,3 +135,11 @@ These are smaller components shared by the biggest ones:
 - Photo
 - SelectMenu
 - SliderRange
+
+## Communication flow
+
+Error / success is represented by:
+
+- Disabling /enabling buttons
+- Error messages in red
+- Success messages in green
