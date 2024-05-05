@@ -79,7 +79,7 @@ The advert detail shows:
 - Price in €
 - Category (tags)
 - Type of offer: on sale / on search
-- Photo: 350px x 350px
+- Photo: 300px x 300px
 
 If the advert doesn't have any photo, it will show a default backup image:
 

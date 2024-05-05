@@ -8,8 +8,8 @@
 }
 
 .NodepopImage-advert {
-  width: 300px;
-  height: 300px;
+  max-width: 300px;
+  max-height: 300px;
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 10px;
