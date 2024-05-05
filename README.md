@@ -8,6 +8,12 @@ The task consists in building an application to display ads for items on sale/se
 
 Our React store uses [Nodepop API](https://github.com/davidjj76/nodepop-api) as a backend. Please, find instructions on how to put it live [here](https://github.com/davidjj76/nodepop-api).
 
+IMPORTANT: set a .env with this variable:
+
+```js
+REACT_APP_API_BASE_URL = http://localhost:3001/
+```
+
 ## Create React App
 
 The app is built using Create React App. To run it, please use:
