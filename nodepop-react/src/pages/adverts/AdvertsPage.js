@@ -76,7 +76,7 @@ function AdvertsPage() {
         setAdvertsPanel(adverts);
         setFilteredAdverts(adverts);
       } catch (error) {
-        setError(error.message);
+        setError(error);
       }
     };
 

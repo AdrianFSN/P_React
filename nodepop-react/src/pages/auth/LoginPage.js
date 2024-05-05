@@ -46,7 +46,6 @@ export default function LoginPage() {
       navigate(to, { replace: true });
     } catch (error) {
       setError(error);
-      console.log(error);
     } finally {
       setIsFetching(false);
     }
@@ -84,7 +83,7 @@ export default function LoginPage() {
           Login
         </Button>
         <CheckBox
-          label="Clica para mantener tu sesión activa"
+          label="Click here to keep your session open"
           checked={checkBoxStatus}
           onChange={handleCheckboxChange}
         ></CheckBox>

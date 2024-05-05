@@ -26,4 +26,112 @@ npm build
 
 ## Routes
 
-### Public
+### Public routes
+
+#### /Login
+
+Served by the component LoginPage, it is the unique public route in the project. No authorization is needed to navigate to this URL. It renders the login form.
+
+#### Authorization token
+
+If you wan't to storage your authentication token, click the checkbox in the login form:
+
+![alt text](image.png)
+
+### Protected routes
+
+You need to login in order to see these routes.
+
+#### /adverts
+
+![alt text](image-2.png)
+
+Served by the component AdvertsPage. If any, it shows a list of the adverts available at that time. In this screen, the adverts show:
+
+- Name
+- Type of offer: on sale / on search
+- Price in €
+- Category (tags)
+
+If there is no advert to show, user will get a call to action with a button to create an advert.
+
+##### Filters zone
+
+There is a place reserved for filters in this screen:
+
+![alt text](image-1.png)
+
+- By name: filters by the name of the ad.
+- By category: filters by the tags of the ad. To get a match, the advert needs to have the same tags marked in the select input.
+- By price range: use the slider to set a minimum and maximum range of prices to retrieve the adverts you want.
+
+By clicking in one of the adverts you will navigate to the advert's detail screen.
+
+#### /adverts/:id
+
+Here you can see the detail of the advert you want. It is managed by the component AdvertPage.
+
+![alt text](image-4.png)
+
+The advert detail shows:
+
+- Name
+- Price in €
+- Category (tags)
+- Type of offer: on sale / on search
+- Photo: 350px x 350px
+
+If the advert doesn't have any photo, it will show a default backup image:
+
+![alt text](image-11.png)
+
+##### Delete advert
+
+The detail of the advcert includes a setup to delete the advert. A confirmation flow is shown before deleting the ad.
+
+![alt text](image-7.png)
+
+Confirmation:
+
+![alt text](image-8.png)
+
+Deletion;
+
+![alt text](image-10.png)
+
+#### /adverts/new
+
+This one is served by the component NewAdvertPage. It is a form to submit new adverts.
+
+![alt text](image-6.png)
+
+All inputs are required except "photo". The sbmit button will stay disabled until the form is fulfilled.
+
+## Secondary components
+
+The components detailed above are using smaller components to manage their functionalities.
+
+### NewAdvertForm
+
+It is one of the biggest component in the setup and the core of NewAdvertPage.
+
+### Advert
+
+It is the core component for AdvertPage.
+
+### AdvertPage
+
+It is the core component for AdvertsPage.
+
+## Basic components
+
+These are smaller components shared by the biggest ones:
+
+- Button
+- CheckBox
+- FileInput
+- FilterCase
+- FormField
+- Photo
+- SelectMenu
+- SliderRange
