@@ -71,7 +71,7 @@ By clicking in one of the adverts you will navigate to the advert's detail scree
 
 Here you can see the detail of the advert you want. It is managed by the component AdvertPage.
 
-![alt text](./images-readme/image-4.png){width=250px}
+![alt text](./images-readme/image-4.png)
 
 The advert detail shows:
 

@@ -91,9 +91,7 @@ function AdvertsPage() {
 
       const resultByTag =
         filterByTag.length === 0 ||
-        (filterByTag.every((tag) => advert.tags.includes(tag)) &&
-          filterByTag.length === advert.tags.length);
-
+        filterByTag.every((tag) => advert.tags.includes(tag));
       const resultByPriceRange =
         advert.price <= filterByMaxPrice && advert.price >= filterByMinPrice;
 
