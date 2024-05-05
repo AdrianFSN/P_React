@@ -4,6 +4,7 @@
   padding: 20px;
   margin-bottom: 20px;
   max-width: 350px;
+  position: relative;
 }
 
 .NodepopImage-advert {
@@ -30,4 +31,29 @@
 
 .single-advert li:last-child {
   margin-bottom: 0;
+}
+
+.offer-type-circle {
+  position: absolute;
+  top: -30px; /* Distancia desde la parte superior */
+  right: 10px; /* Distancia desde la derecha */
+  width: 80px; /* Diámetro del círculo */
+  height: 80px; /* Diámetro del círculo */
+  background-color: #ff7f50; /* Color del círculo */
+  border-radius: 50%; /* Hacer el elemento un círculo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 0.8em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.on-sale {
+  background-color: #ff7f50; /* Color para "On sale" */
+}
+
+.on-offer {
+  background-color: #87ceeb; /* Color para "On offer" */
 }
