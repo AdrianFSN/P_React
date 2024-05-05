@@ -1,15 +1,17 @@
-import React, { useState } from "react";
 import "./Advert.css";
-import ImageNotAvailable from "../../../assets/ImageNotAvailable.jpg";
+import Photo from "../../../components/shared/Photo";
 
 const Advert = ({ id, name, price, sale, tags, photo, showImage }) => {
-  const backupPhoto = ImageNotAvailable;
-  const [pictureToShow] = useState(photo || backupPhoto);
-
   return (
     <section className="single-advert">
       <ul key={id}>
-        {showImage && <img src={pictureToShow} alt="Advert offer" />}
+        {showImage && (
+          <Photo
+            className="NodepopImage-advert"
+            photo={photo}
+            alt="Nodepop article"
+          ></Photo>
+        )}
         <li>
           <h2>{name}</h2>
         </li>
