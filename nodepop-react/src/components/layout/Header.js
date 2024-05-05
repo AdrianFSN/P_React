@@ -18,9 +18,7 @@ export default function Header({ className }) {
         <NavLink to="/v1/adverts" end>
           See adverts
         </NavLink>
-        <NavLink to="/v1/adverts/new" end>
-          Create new advert
-        </NavLink>
+        <NavLink to="/v1/adverts/new">Create new advert</NavLink>
         <AuthButton className="header-button" />
       </nav>
     </header>
