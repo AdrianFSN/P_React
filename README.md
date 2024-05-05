@@ -23,3 +23,7 @@ Run it in the production mode:
 ```sh
 npm build
 ```
+
+## Routes
+
+### Public

@@ -7,8 +7,10 @@ function AuthButton({ className }) {
   const { isLogged, onLogout } = useAuth();
 
   const handleLogoutClick = async () => {
-    await logout();
-    onLogout();
+    try {
+      await logout();
+      onLogout();
+    } catch (error) {}
   };
 
   return isLogged ? (
@@ -16,7 +18,7 @@ function AuthButton({ className }) {
       Logout
     </Button>
   ) : (
-    <Button $variant="primary" className={className} as={Link} to="/auth/login">
+    <Button $variant="primary" className={className} as={Link} to="/login">
       Login
     </Button>
   );

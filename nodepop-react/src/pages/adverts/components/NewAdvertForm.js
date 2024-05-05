@@ -67,10 +67,10 @@ function NewAdvertForm() {
     event.preventDefault();
     try {
       const createdAd = await createNewAd(formValues);
-      navigate(`/v1/adverts/${createdAd.id}`);
+      navigate(`/adverts/${createdAd.id}`);
     } catch (error) {
       if (error.status === 401) {
-        navigate("/auth/login");
+        navigate("/login");
       }
     }
   };

@@ -10,9 +10,9 @@ import NotFound from "./pages/NotFound";
 function App() {
   return (
     <Routes>
-      <Route path="/auth/login" element={<LoginPage />} />
+      <Route path="/login" element={<LoginPage />} />
       <Route
-        path="/v1/adverts"
+        path="/adverts"
         element={
           <div className="container">
             <RequireAuth>
@@ -25,7 +25,7 @@ function App() {
         <Route path="new" element={<NewAdvertPage />} />
         <Route path=":advertId" element={<AdvertPage />} />
       </Route>
-      <Route path="/" element={<Navigate to="/v1/adverts" />} />
+      <Route path="/" element={<Navigate to="/adverts" />} />
       <Route path="/404" element={<NotFound />} />
       <Route path="*" element={<Navigate to="/404" />} />
     </Routes>

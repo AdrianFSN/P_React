@@ -15,10 +15,10 @@ export default function Header({ className }) {
       </Link>
 
       <nav className="header-nav">
-        <NavLink to="/v1/adverts" end>
+        <NavLink to="/adverts" end>
           See adverts
         </NavLink>
-        <NavLink to="/v1/adverts/new">Create new advert</NavLink>
+        <NavLink to="/adverts/new">Create new advert</NavLink>
         <AuthButton className="header-button" />
       </nav>
     </header>

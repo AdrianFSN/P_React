@@ -4,7 +4,7 @@ import Button from "../../../components/shared/Button";
 const EmptyList = () => {
   const navigate = useNavigate();
   const navigateToCreateNewAd = () => {
-    navigate("/v1/adverts/new");
+    navigate("/adverts/new");
   };
 
   return (

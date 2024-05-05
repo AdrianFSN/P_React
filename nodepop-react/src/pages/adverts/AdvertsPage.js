@@ -141,7 +141,7 @@ function AdvertsPage() {
           <ul className={styles.advertsList}>
             {filteredAdverts.map(({ id, photo, ...advert }) => (
               <li key={id}>
-                <Link to={`/v1/adverts/${id}`}>
+                <Link to={`/adverts/${id}`}>
                   <Advert {...advert} />
                 </Link>
               </li>

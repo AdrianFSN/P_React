@@ -52,7 +52,7 @@ function AdvertPage() {
   const handleAdDeletion = async () => {
     try {
       await deleteAd(advert.id);
-      navigate("/v1/adverts");
+      navigate("/adverts");
     } catch (error) {
       setError(error.message);
     }
