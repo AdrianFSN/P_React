@@ -8,7 +8,6 @@ import EmptyList from "./components/EmptyAdsList";
 import FilterCase from "../../components/shared/FilterCase";
 import SelectMenu from "../../components/shared/SelectMenu";
 import Button from "../../components/shared/Button";
-//import SliderNodePop from "../../components/shared/Slider";
 import SliderRange from "../../components/shared/SliderRange";
 
 function AdvertsPage() {
@@ -107,23 +106,30 @@ function AdvertsPage() {
   return (
     <Layout title="List of adverts">
       <div>{loading && <div className="Nodepop-loading">Loading...</div>}</div>
-      <section className="AdvertsPage-filters">
-        <div>
-          <h3>Filters section</h3>
+      <section className={styles.filtersSection}>
+        <h3>Filters section</h3>
+        <div className={styles.filterGroup}>
+          <label className={styles.filterLabel}>Filter by name:</label>
+          <FilterCase
+            value={filterByName}
+            onChange={handleFilterByName}
+            placeholder="Filter by name"
+          />
         </div>
-        <FilterCase
-          value={filterByName}
-          onChange={handleFilterByName}
-          placeholder="Filter by name"
-        />
-        <div>Filter by category</div>
-        <SelectMenu onChange={handleFilterByTag} multiple />
-        <div>Filter by price</div>
+        <div className={styles.filterGroup}>
+          <label className={styles.filterLabel}>Filter by category:</label>
+          <SelectMenu
+            onChange={handleFilterByTag}
+            className={styles.filterInput}
+            multiple
+          />
+        </div>
+        <label className={styles.filterLabel}>Filter by price:</label>
         <SliderRange
           min={minPriceAvailable}
           max={maxPriceAvailable}
           value={[filterByMinPrice, filterByMaxPrice]}
-          className="SliderNodepop"
+          className={styles.sliderRange}
           label={`Min price: ${filterByMinPrice} € - Max price: ${filterByMaxPrice} €`}
           onChange={handleFilterByPriceRange}
           allowCross={false}

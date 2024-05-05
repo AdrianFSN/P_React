@@ -5,8 +5,6 @@
 }
 
 .advertsList ul {
-  /*   border: 1px solid lightblue;
-  border-radius: 5px; */
   padding: 1rem;
 }
 
@@ -21,4 +19,62 @@
 .advertsList a {
   text-decoration: none;
   color: black;
+}
+
+.filtersSection {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.filtersSection h3 {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+.filterInput {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.filterLabel {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.sliderRange {
+  margin-bottom: 20px;
+}
+
+.resetButton {
+  background-color: #ff7f50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.resetButton:hover {
+  background-color: #ff6347;
+}
+
+.filterGroup {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  /* margin-bottom: 10px; */
+}
+
+.filterGroup label {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.sliderRange {
+  margin-top: 20px;
 }

@@ -1,6 +1,9 @@
 .header {
+  position: sticky;
+  background-color: white;
   align-items: center;
   display: flex;
+  z-index: 1000;
 }
 
 .header-logo {
@@ -23,6 +26,7 @@
   display: flex;
   flex: 1;
   justify-content: flex-end;
+  gap: 10px;
 }
 
 .header-nav .header-nav-item {
@@ -37,4 +41,8 @@
 .header-button {
   width: 144px;
   margin-left: 10px;
+}
+
+.header-nav a {
+  text-decoration: none;
 }

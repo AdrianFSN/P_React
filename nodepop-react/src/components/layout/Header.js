@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { ReactComponent as Icon } from "../../assets/logo.svg";
 import AuthButton from "../../pages/auth/components/AuthButton";
 import "./Header.css";
-//import Button from "../shared/Button";
+
 import { Link, NavLink } from "react-router-dom";
 
 export default function Header({ className }) {
