@@ -65,6 +65,8 @@ There is a place reserved for filters in this screen:
 - By category: filters by the tags of the ad. To get a match, the advert needs to have the same tags marked in the select input.
 - By price range: use the slider to set a minimum and maximum range of prices to retrieve the adverts you want.
 
+Use "reset filters" button to delete the filters when you don't need them anymore.
+
 By clicking in one of the adverts you will navigate to the advert's detail screen.
 
 #### /adverts/:id
