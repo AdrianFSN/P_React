@@ -10,6 +10,7 @@ import SelectMenu from "../../components/shared/SelectMenu";
 import Button from "../../components/shared/Button";
 //import SliderNodePop from "../../components/shared/Slider";
 import SliderRange from "../../components/shared/SliderRange";
+import RadioButton from "../../components/shared/RadioButton";
 
 function AdvertsPage() {
   const [adverts, setAdvertsPanel] = useState([]);
@@ -21,6 +22,11 @@ function AdvertsPage() {
   const [filterByMaxPrice, setFilterByMaxPrice] = useState(maxPriceAvailable);
   const [filterByMinPrice, setFilterByMinPrice] = useState(minPriceAvailable);
   const [loading, setLoading] = useState(true);
+  const [offerFilterValues, setOfferFilterValues] = useState({
+    onSale: false,
+    onSearch: false,
+    all: true,
+  });
 
   useEffect(() => {
     const calculateMaxMinPriceAvailable = () => {
@@ -48,6 +54,16 @@ function AdvertsPage() {
     setFilterByName(event.target.value);
   };
 
+  useEffect(() => {
+    if (offerFilterValues.all) {
+      setOfferFilterValues(() => ({
+        all: true,
+        onSale: false,
+        onSearch: false,
+      }));
+    }
+  }, [offerFilterValues.all]);
+
   const handleFilterByTag = (event) => {
     event.preventDefault();
     const selectedOptions = Array.from(
@@ -61,6 +77,14 @@ function AdvertsPage() {
   const handleFilterByPriceRange = (event) => {
     setFilterByMinPrice(event[0]);
     setFilterByMaxPrice(event[1]);
+  };
+
+  const handleFilterByTypeOfOffer = (event) => {
+    setOfferFilterValues((prevValues) => ({
+      ...prevValues,
+      [event.target.id]: !prevValues[event.target.id],
+    }));
+    console.log(offerFilterValues);
   };
 
   const resetFilters = () => {
@@ -98,11 +122,25 @@ function AdvertsPage() {
       const resultByPriceRange =
         advert.price <= filterByMaxPrice && advert.price >= filterByMinPrice;
 
-      return resultByName && resultByTag && resultByPriceRange;
+      const resultByTypeOfOffer =
+        (offerFilterValues.onSearch && !advert.sale) ||
+        (offerFilterValues.onSale && advert.sale) ||
+        offerFilterValues.all;
+      console.log("esto es resultByTypeofOffer ", resultByTypeOfOffer);
+      return (
+        resultByName && resultByTag && resultByPriceRange && resultByTypeOfOffer
+      );
     });
 
     setFilteredAdverts(filteredAds);
-  }, [adverts, filterByName, filterByTag, filterByMaxPrice, filterByMinPrice]);
+  }, [
+    adverts,
+    filterByName,
+    filterByTag,
+    filterByMaxPrice,
+    filterByMinPrice,
+    offerFilterValues,
+  ]);
 
   return (
     <Layout title="List of adverts">
@@ -128,6 +166,28 @@ function AdvertsPage() {
           onChange={handleFilterByPriceRange}
           allowCross={false}
         ></SliderRange>
+        <RadioButton
+          label="On sale"
+          name="filterByTypeofOffer"
+          id="onSale"
+          value={offerFilterValues.onSale}
+          onClick={handleFilterByTypeOfOffer}
+        />
+        <RadioButton
+          label="On search"
+          name="filterByTypeofOffer"
+          id="onSearch"
+          value={offerFilterValues.onSearch}
+          onClick={handleFilterByTypeOfOffer}
+        />
+        <RadioButton
+          label="All types"
+          name="filterByTypeofOffer"
+          id="all"
+          value={offerFilterValues.all}
+          defaultChecked={offerFilterValues}
+          onClick={handleFilterByTypeOfOffer}
+        />
         <Button onClick={resetFilters}>Reset filters</Button>
       </section>
       <section>
